@@ -176,7 +176,7 @@ def make_grid(dataset, column_names, time_column, years=None):
             years = dataset[time_column].unique()
 
         for year in years:
-            dataset_by_year = dataset[(dataset[time_column] == int(year))]
+            dataset_by_year = dataset[(dataset[time_column] == float(year))]
             for col_name in column_names:
                 # Each column name is unique
                 temp = col_name_template.format(year, col_name)
@@ -205,7 +205,7 @@ def make_grid_with_categories(dataset, column_names, time_column, category_colum
             
         for year in years:
             for category in categories:
-                dataset_by_year_and_cat = dataset[(dataset[time_column] == int(year)) & (dataset[category_column] == category)]
+                dataset_by_year_and_cat = dataset[(dataset[time_column] == float(year)) & (dataset[category_column] == category)]
                 for col_name in column_names:
                     # Each column name is unique
                     temp = col_name_template.format(year, col_name, category)
