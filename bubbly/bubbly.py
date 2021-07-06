@@ -344,7 +344,8 @@ def add_slider_steps(sliders_dict, year):
          'mode': 'immediate',
        'transition': {'duration': 100}}
      ],
-     'label': str(year)}
+     'label': str(year),
+     'method': 'animate'}
     sliders_dict['steps'].append(slider_step)
     
 def add_button(figure):
@@ -355,7 +356,7 @@ def add_button(figure):
             'buttons': [
                 {
                     'args': [None, {'frame': {'duration': 500, 'redraw': False},
-                             'fromcurrent': True, 'transition': {'duration': 300, 'easing': 'quadratic-in-out'}}],
+                             'fromcurrent': True, 'transition': {'duration': 100, 'easing': 'linear'}}],
                     'label': 'Play',
                     'method': 'animate'
                 },
@@ -433,8 +434,7 @@ def get_trace(grid, col_name_template, x_column, y_column, bubble_column, z_colu
         trace = {
         'x': [],
         'y': [],
-        'text': category,
-        'mode': 'markers'
+        'text': category
         }
 
 
