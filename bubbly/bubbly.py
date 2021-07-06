@@ -394,17 +394,17 @@ def get_trace(grid, col_name_template, x_column, y_column, bubble_column, z_colu
             sizeref=200000, scale_bubble=1, marker_opacity=None, marker_border_width=None,
             color_column=None, colorscale=None, show_colorbar=True, colorbar_title=None, category=None):
     ''' Makes the trace for the data as a dictionary object that can be added to the figure or time frames.'''
-    
-    trace = {
-        'x': grid.loc[grid['key']==col_name_template.format(x_column, category), 'value'].values[0],
-        'y': grid.loc[grid['key']==col_name_template.format(y_column, category), 'value'].values[0],
-        'text': grid.loc[grid['key']==col_name_template.format(bubble_column, category), 'value'].values[0],
-        'mode': 'markers'
-        }
-    
-    if z_column:
-        trace['z'] = grid.loc[grid['key']==col_name_template.format(z_column, category), 'value'].values[0]
-    try:        
+    try:
+        trace = {
+            'x': grid.loc[grid['key']==col_name_template.format(x_column, category), 'value'].values[0],
+            'y': grid.loc[grid['key']==col_name_template.format(y_column, category), 'value'].values[0],
+            'text': grid.loc[grid['key']==col_name_template.format(bubble_column, category), 'value'].values[0],
+            'mode': 'markers'
+            }
+        
+        if z_column:
+            trace['z'] = grid.loc[grid['key']==col_name_template.format(z_column, category), 'value'].values[0]
+                
         if size_column:
             trace['marker'] = {
                 'sizemode': 'area',
