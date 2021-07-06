@@ -11,6 +11,7 @@ def bubbleplot(dataset, x_column, y_column, bubble_column, z_column=None,
                width=None, height=None):
     ''' Makes the animated and interactive bubble charts from a given dataset.'''
     
+    
     # Set category_column as None and update it as color_column only in case
     # color_column is not None and categorical, in which case set color_column as None
     category_column = None
