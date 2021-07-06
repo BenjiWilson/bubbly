@@ -404,31 +404,40 @@ def get_trace(grid, col_name_template, x_column, y_column, bubble_column, z_colu
     
     if z_column:
         trace['z'] = grid.loc[grid['key']==col_name_template.format(z_column, category), 'value'].values[0]
+    try:        
+        if size_column:
+            trace['marker'] = {
+                'sizemode': 'area',
+                'sizeref': sizeref,
+                'size': grid.loc[grid['key']==col_name_template.format(size_column, category), 'value'].values[0],
+            }
+        else:
+            trace['marker'] = {
+                'size': 10*scale_bubble,
+            }
         
-    if size_column:
-        trace['marker'] = {
-            'sizemode': 'area',
-            'sizeref': sizeref,
-            'size': grid.loc[grid['key']==col_name_template.format(size_column, category), 'value'].values[0],
+        if marker_opacity:
+            trace['marker']['opacity'] = marker_opacity
+            
+        if marker_border_width:
+            trace['marker']['line'] = {'width': marker_border_width}
+            
+        if color_column:
+                trace['marker']['color'] = grid.loc[grid['key']==col_name_template.format(color_column), 'value'].values[0]
+                trace['marker']['colorbar'] = {'title': colorbar_title}
+                trace['marker']['colorscale'] = colorscale
+                    
+        if category:
+            trace['name'] = category
+    except:
+        trace = {
+        'x': [],
+        'y': [],
+        'text': category,
+        'mode': 'markers'
         }
-    else:
-        trace['marker'] = {
-            'size': 10*scale_bubble,
-        }
-    
-    if marker_opacity:
-        trace['marker']['opacity'] = marker_opacity
-        
-    if marker_border_width:
-        trace['marker']['line'] = {'width': marker_border_width}
-        
-    if color_column:
-            trace['marker']['color'] = grid.loc[grid['key']==col_name_template.format(color_column), 'value'].values[0]
-            trace['marker']['colorbar'] = {'title': colorbar_title}
-            trace['marker']['colorscale'] = colorscale
-                
-    if category:
-        trace['name'] = category
+
+
         
     return trace
 
