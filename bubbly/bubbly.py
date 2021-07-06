@@ -11,7 +11,7 @@ def bubbleplot(dataset, x_column, y_column, bubble_column, z_column=None,
                width=None, height=None):
     ''' Makes the animated and interactive bubble charts from a given dataset.'''
     
-    
+
     # Set category_column as None and update it as color_column only in case
     # color_column is not None and categorical, in which case set color_column as None
     category_column = None
@@ -340,12 +340,11 @@ def add_slider_steps(sliders_dict, year):
     
     slider_step = {'args': [
         [year],
-        {'frame': {'duration': 300, 'redraw': False},
+        {'frame': {'duration': 100, 'redraw': False},
          'mode': 'immediate',
-       'transition': {'duration': 300}}
+       'transition': {'duration': 100}}
      ],
-     'label': str(year),
-     'method': 'animate'}
+     'label': str(year)}
     sliders_dict['steps'].append(slider_step)
     
 def add_button(figure):
